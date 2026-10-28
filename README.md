@@ -8,10 +8,10 @@ Requirements: Node.js and npm.
 
 ```bash
 npm ci
-npm run dev
+npm run dev -- --host 127.0.0.1 --port 4175 --strictPort
 ```
 
-Open the local URL printed by Vite, usually **http://localhost:5173/**. If that port is busy, Vite will print a different one. To make a production build, run `npm run build`.
+Open **http://127.0.0.1:4175/**. This repository uses port 4175 so it stays separate from other local projects. To make a production build, run `npm run build`.
 
 ## Controls
 
