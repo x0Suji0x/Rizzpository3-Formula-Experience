@@ -1,65 +1,34 @@
-# APRILIA RSV4 // ANATOMY (RSV4 FACTORY)
-### An immersive 3D WebGL scroll experience built for the Aprilia RSV4 1100 Factory.
+# APEX LAB // FORMULA
 
-> Unofficial fan project · Not affiliated with Aprilia Racing S.r.l. or Piaggio & C. S.p.A.
+An interactive Formula vehicle study built with React, Three.js, and React Three Fiber. Choose a car, inspect it in Kit mode, drive it in Drive mode, or orbit it in Studio mode.
 
----
+## Open it locally
 
-## What is this?
-
-Scroll through every component that makes the RSV4 Factory the most sophisticated production superbike on the planet. Ten parts, ten sections, one bike — all in real-time 3D tech-brutalist telemetry aesthetics.
-
----
-
-## Tech Stack
-
-| Layer | Tools |
-|-------|-------|
-| 3D | Three.js, React Three Fiber, Drei, Postprocessing |
-| Scroll | Lenis smooth scroll + GSAP ScrollTrigger |
-| State | Zustand |
-| Framework | React 18 + Vite |
-| Styling | Tailwind CSS |
-| Fonts | Anton, JetBrains Mono, Space Grotesk |
-
----
-
-## Team & Folder Ownership
-
-| Path | Owner | Description |
-|------|-------|-------------|
-| `src/three/` | **Sujay** | 3D Canvas, WebGL model loading, explode system, scroll choreography, camera rig, shaders, studio scene, postprocessing |
-| `src/sections/`, `src/styles/` | **Manas** | DOM overlay sections, typography reveals, telemetry UI, layout styling |
-| `src/hud/`, `src/data/`, `public/` | **Kritagya** | Technical HUD overlays, parts database, telemetry metrics, static 3D assets |
-| `src/store/scroll.js` | **Shared Contract** | Shared Zustand state store (progress, velocity, activePartId, hoveredPart, activePartScreenPos, modelReady, muted, lowPower) |
-
----
-
-## Getting Started
+Requirements: Node.js and npm.
 
 ```bash
-npm install
-npm run dev          # http://localhost:5173
-npm run build        # production bundle
+npm ci
+npm run dev
 ```
 
-## Arcade Drive Mode (RS 660)
+Open the local URL printed by Vite, usually **http://localhost:5173/**. If that port is busy, Vite will print a different one. To make a production build, run `npm run build`.
 
-Open `/drive` in the running app, or use the **RS 660 DRIVE** link on the anatomy page. The driving scene expects a model at `public/models/aprilia-rs660.glb`. The [linked Sketchfab model](https://sketchfab.com/3d-models/aprilia-rs-660-2024-9c150ae84c364ffcb09778bec610d17e) is not marked downloadable; obtain its GLB from the creator or an authorized purchase and confirm the license before adding it. Record the creator and license in `src/drive/Drive.jsx` before publishing. Controls: **WASD** or the **arrow keys**.
+## Controls
 
----
+- **Kit**: drag to orbit, scroll/pinch to zoom, and use the previous/next controls to switch cars.
+- **Drive**: use **WASD** or the **arrow keys**. Touch controls are available on smaller screens.
+- **Studio**: orbit and zoom around the car.
 
-## Data Sources & Credits
+Driving uses a lightweight arcade-style controller; it is not a tyre or suspension physics simulation.
 
-All Aprilia RSV4 specifications are sourced from:
-- [aprilia.com/en_EN/bikes/rsv4/rsv4-factory/](https://www.aprilia.com/en_EN/bikes/rsv4/rsv4-factory/)
-- Cross-referenced with motorcyclespecs.co.za and motorcycle.com
-- 3D Model Author & Procedural Geometry: Sujay & Open Engineering Assets.
+## Formula 2 models
 
----
+All three cars use local GLB files in `public/models/`: the supplied high-poly source model, Scarlet GP, and Ocean GP. The livery variants share the source geometry and change material colors. Editable Blender files and the export script are in `assets/blender/`; preview renders are in `previews/`.
 
-## Disclaimer
+The supplied Blender source did not include a separate license or attribution document. Verify reuse terms before redistributing these model files further.
 
-This is an **unofficial fan project** created for educational and creative purposes.  
-Not affiliated with, endorsed by, or sponsored by **Aprilia Racing S.r.l.** or **Piaggio & C. S.p.A.**  
-All trademarks, brand names, and product names are the property of their respective owners.
+## Stack
+
+- React 18 and Vite
+- Three.js, React Three Fiber, and Drei
+- GSAP, Zustand, and Lucide React
