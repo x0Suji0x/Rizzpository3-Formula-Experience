@@ -13,6 +13,10 @@ npm run dev -- --host 127.0.0.1 --port 4175 --strictPort
 
 Open **http://127.0.0.1:4175/**. This repository uses port 4175 so it stays separate from other local projects. To make a production build, run `npm run build`.
 
+## Deploy on Netlify
+
+Import `x0Suji0x/Rizzpository3-Formula-Experience` as a Netlify site. Netlify reads `netlify.toml` for the build command and `dist` publish directory; the build removes unused legacy motorcycle GLBs from the deploy output while keeping them in the repository.
+
 ## Controls
 
 - **Kit**: drag to orbit, scroll/pinch to zoom, and use the previous/next controls to switch cars.
