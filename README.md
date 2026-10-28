@@ -1,6 +1,6 @@
-# APEX LAB // FORMULA
+# Formula 2 Interactive Experience
 
-An interactive Formula vehicle study built with React, Three.js, and React Three Fiber. Choose a car, inspect it in Kit mode, drive it in Drive mode, or orbit it in Studio mode.
+**APEX LAB // FORMULA** is an interactive Formula 2 vehicle study built with React, Three.js, and React Three Fiber. Choose a car, inspect it in Kit mode, drive it in Drive mode, or orbit it in Studio mode.
 
 ## Open it locally
 
