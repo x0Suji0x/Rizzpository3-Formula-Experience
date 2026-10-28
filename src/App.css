@@ -1,119 +1,18 @@
-/* App.css — global styles */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
-  --accent: #d4ff00;
-  --red:    #ff2200;
-  --bg:     #000;
-  --font:   'JetBrains Mono', monospace;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: #f5f5f3;
+  background: #0b0d0f;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-html { background: var(--bg); color: #fff; scroll-behavior: auto; }
-body { overflow-x: hidden; }
-
-/* ── Scroll sections ─────────────────────────────────────────────── */
-.scroll-content {
-  position: relative;
-  z-index: 10;
-  pointer-events: none; /* Scene handles mouse; re-enable for text */
-}
-
-.part-section {
-  height: 100vh;
-  display: flex;
-  align-items: flex-end;
-  padding: 3rem 2rem;
-  pointer-events: none;
-}
-
-/* Info panel — bottom-left */
-.part-section__info {
-  max-width: 360px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #1c1c1c;
-  border-left: 2px solid var(--accent);
-  padding: 1.2rem 1.4rem;
-  backdrop-filter: blur(8px);
-  pointer-events: all;
-}
-
-.part-section__index {
-  font-family: var(--font);
-  font-size: 0.6rem;
-  color: #555;
-  letter-spacing: 0.2em;
-  margin-bottom: 0.5rem;
-}
-
-.part-section__name {
-  font-family: var(--font);
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #fff;
-  margin-bottom: 0.5rem;
-}
-
-.part-section__pitch {
-  font-family: var(--font);
-  font-size: 0.75rem;
-  color: var(--accent);
-  letter-spacing: 0.06em;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  font-style: italic;
-}
-
-.part-section__specs {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  margin-bottom: 1rem;
-  border-top: 1px solid #1a1a1a;
-  padding-top: 0.8rem;
-}
-
-.part-section__specs li {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  font-family: var(--font);
-  font-size: 0.65rem;
-}
-
-.spec-label {
-  color: #555;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.spec-value {
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-align: right;
-}
-
-.part-section__why {
-  font-family: var(--font);
-  font-size: 0.6rem;
-  color: #444;
-  line-height: 1.7;
-  letter-spacing: 0.04em;
-  border-top: 1px solid #1a1a1a;
-  padding-top: 0.7rem;
-}
-
-/* ── Mobile ─────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .part-section {
-    padding: 1.5rem 1rem;
-    align-items: flex-end;
-  }
-  .part-section__info { max-width: 100%; }
-  .part-section__name { font-size: 1.1rem; }
-}
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { width: 100%; min-width: 320px; height: 100%; margin: 0; }
+body { overflow: hidden; }
+button, a { font: inherit; }
+button { color: inherit; }
+::selection { background: #ed422f; color: #fff; }

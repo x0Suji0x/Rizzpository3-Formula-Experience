@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#0a0a0a" />
-  <text x="32" y="44" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="900" text-anchor="middle" fill="#e10600">V4</text>
+  <rect width="64" height="64" fill="#0b0d10"/>
+  <path d="M11 49 27 12h10l16 37H42l-3-8H25l-3 8H11Zm17-16h8l-4-11-4 11Z" fill="#f1f1ed"/>
+  <path d="M11 54h42" stroke="#df4938" stroke-width="4"/>
 </svg>

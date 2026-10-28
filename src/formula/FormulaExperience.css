@@ -1,0 +1,195 @@
+.formula-app {
+  --f-red: #df4938;
+  --f-red-bright: #f15a46;
+  --f-white: #f1f1ed;
+  --f-muted: rgba(241,241,237,.54);
+  --f-faint: rgba(241,241,237,.19);
+  --f-mono: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0b0d10;
+  color: var(--f-white);
+}
+
+.formula-canvas { position: absolute !important; inset: 0; z-index: 0; }
+.formula-app button { border: 0; outline: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.formula-app button:focus-visible { outline: 1px solid var(--f-red-bright); outline-offset: 4px; }
+.formula-status i, .formula-loader { border-radius: 50% !important; }
+.formula-vignette { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg,rgba(6,8,10,.48),transparent 23%,transparent 66%,rgba(5,6,7,.68)),linear-gradient(90deg,rgba(5,6,7,.45),transparent 34%,transparent 72%,rgba(5,6,7,.20)); }
+
+.formula-header { position: absolute; z-index: 4; top: 0; left: 0; right: 0; height: 92px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; padding: 0 clamp(22px, 4.3vw, 76px); border-bottom: 1px solid rgba(255,255,255,.1); }
+.formula-brand { display: inline-flex; align-items: center; gap: 12px; width: max-content; text-decoration: none; color: inherit; }
+.formula-brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.6); font-size: 18px; font-weight: 700; transform: skew(-8deg); }
+.formula-brand-copy { display: flex; flex-direction: column; gap: 3px; letter-spacing: .13em; }
+.formula-brand-copy strong { font-size: 12px; font-weight: 700; }
+.formula-brand-copy small { font: 8px var(--f-mono); color: var(--f-muted); letter-spacing: .16em; }
+.formula-title-block { justify-self: center; text-align: center; transform: translateY(1px); }
+.formula-kicker { display: block; font: 9px var(--f-mono); letter-spacing: .18em; color: var(--f-muted); margin-bottom: 5px; }
+.formula-title-block h1 { margin: 0; font-size: 19px; font-weight: 600; line-height: 1; letter-spacing: .2em; }
+.formula-title-dot { color: var(--f-red-bright); }
+.formula-header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 22px; }
+.formula-status { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,.68); font: 9px var(--f-mono); letter-spacing: .12em; }
+.formula-status i { width: 6px; height: 6px; border-radius: 50%; background: #76c5a4; box-shadow: 0 0 12px rgba(118,197,164,.65); }
+.formula-icon-button { width: 36px; height: 36px; display: grid; place-items: center; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.17) !important; transition: background .2s,border-color .2s; }
+.formula-icon-button:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.44) !important; }
+.formula-icon-button svg { width: 15px; height: 15px; fill: none; stroke: #eee; stroke-width: 1.5; stroke-linecap: square; }
+
+.formula-left-rail { position: absolute; z-index: 3; left: clamp(18px, 2.7vw, 48px); top: 39%; display: flex; align-items: center; gap: 15px; flex-direction: column; color: var(--f-muted); }
+.formula-vertical-label { writing-mode: vertical-rl; transform: rotate(180deg); font: 8px var(--f-mono); letter-spacing: .21em; }
+.formula-rail-line { width: 1px; height: 68px; background: linear-gradient(transparent,rgba(255,255,255,.32),transparent); }
+.formula-rail-index { writing-mode: vertical-rl; font: 8px var(--f-mono); letter-spacing: .14em; }
+
+.formula-car-info { position: absolute; z-index: 3; bottom: 130px; left: clamp(26px, 7.3vw, 126px); width: min(470px, 36vw); pointer-events: none; animation: formula-fade-up .65s cubic-bezier(.2,.7,.2,1) both; }
+.formula-index-line { display: flex; align-items: center; gap: 12px; margin-bottom: 17px; color: rgba(242,242,237,.58); font: 8px var(--f-mono); letter-spacing: .17em; }
+.formula-line { width: 36px; height: 1px; background: var(--f-red); }
+.formula-car-info h2 { margin: 0; max-width: 520px; text-transform: uppercase; font-size: clamp(24px, 3.3vw, 45px); font-weight: 500; letter-spacing: -.045em; line-height: .98; }
+.formula-car-info p { margin: 12px 0 21px; font-size: 12px; letter-spacing: .015em; color: rgba(245,245,240,.66); }
+.formula-spec-grid { display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,.14); padding-top: 14px; max-width: 440px; }
+.formula-spec-grid > div { display: flex; flex-direction: column; gap: 7px; padding: 0 24px; border-left: 1px solid rgba(255,255,255,.12); }
+.formula-spec-grid > div:first-child { padding-left: 0; border-left: 0; }
+.formula-spec-grid span { font: 7px var(--f-mono); letter-spacing: .12em; color: var(--f-muted); white-space: nowrap; }
+.formula-spec-grid strong { font: 10px var(--f-mono); font-weight: 500; letter-spacing: .03em; white-space: nowrap; }
+
+.formula-car-nav { position: absolute; z-index: 3; right: clamp(22px, 4.3vw, 76px); top: 40%; display: flex; align-items: center; gap: 18px; max-width: 345px; }
+.formula-car-nav button { display: flex; align-items: center; gap: 13px; background: transparent; color: var(--f-white); text-align: left; padding: 9px 0; opacity: .76; transition: opacity .2s,transform .2s; }
+.formula-car-nav button:hover { opacity: 1; transform: translateX(2px); }
+.formula-car-nav button > span:first-child:last-child { color: var(--f-red-bright); font-size: 19px; }
+.formula-car-nav button > span { display: flex; flex-direction: column; gap: 6px; }
+.formula-car-nav button small { color: var(--f-muted); font: 7px var(--f-mono); letter-spacing: .13em; }
+.formula-car-nav button strong { max-width: 125px; font: 9px var(--f-mono); font-weight: 500; letter-spacing: .05em; }
+.formula-car-nav-divider { width: 1px; height: 31px; background: rgba(255,255,255,.17); }
+
+.formula-telemetry { position: absolute; z-index: 3; right: clamp(24px, 4.5vw, 78px); bottom: 131px; display: flex; align-items: center; gap: 20px; animation: formula-fade-up .4s ease both; }
+.formula-speed { display: flex; align-items: baseline; gap: 7px; }
+.formula-speed strong { font: 500 36px var(--f-mono); letter-spacing: -.09em; }
+.formula-speed span { color: var(--f-muted); font: 8px var(--f-mono); }
+.formula-telemetry-divider { width: 1px; height: 36px; background: rgba(255,255,255,.2); }
+.formula-gear { display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.formula-gear small { font: 7px var(--f-mono); color: var(--f-muted); letter-spacing: .15em; }
+.formula-gear strong { font: 20px var(--f-mono); color: var(--f-red-bright); }
+.formula-rpm { width: 120px; display: flex; flex-direction: column; gap: 9px; }
+.formula-rpm-top { display: flex; justify-content: space-between; font: 8px var(--f-mono); color: var(--f-muted); }
+.formula-rpm-top strong { color: var(--f-white); font-weight: 500; }
+.formula-rpm-bar { height: 3px; background: rgba(255,255,255,.17); }
+.formula-rpm-bar i { display: block; height: 100%; background: var(--f-red-bright); transition: width .15s; }
+.formula-drive-hint { display: grid; grid-template-columns: repeat(2, 21px); gap: 3px; }
+.formula-key { height: 20px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.23); color: rgba(255,255,255,.75); font: 8px var(--f-mono); }
+.formula-drive-hint small { grid-column: 1 / span 2; color: var(--f-muted); font: 6px var(--f-mono); letter-spacing: .08em; margin-top: 3px; }
+
+.formula-footer { position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; min-height: 90px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; padding: 0 clamp(22px, 4.3vw, 76px); border-top: 1px solid rgba(255,255,255,.13); background: linear-gradient(0deg,rgba(4,5,6,.55),rgba(4,5,6,.06)); }
+.formula-footer-note { display: flex; align-items: center; gap: 15px; min-width: 0; }
+.formula-mode-number { color: var(--f-red-bright); font: 12px var(--f-mono); }
+.formula-footer-note > div { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.formula-footer-note strong { font-size: 11px; font-weight: 500; letter-spacing: .025em; }
+.formula-footer-note small { color: var(--f-muted); font: 7px var(--f-mono); letter-spacing: .07em; white-space: nowrap; }
+.formula-mode-switch { height: 90px; display: flex; align-items: stretch; gap: 4px; }
+.formula-mode-switch button { position: relative; display: flex; align-items: center; gap: 11px; min-width: 105px; padding: 0 18px; background: transparent; color: rgba(255,255,255,.52); font-size: 12px; transition: background .2s,color .2s; }
+.formula-mode-switch button:hover { color: #fff; background: rgba(255,255,255,.035); }
+.formula-mode-switch button > span { font: 8px var(--f-mono); color: rgba(255,255,255,.28); }
+.formula-mode-switch button.active { color: #fff; background: rgba(255,255,255,.055); }
+.formula-mode-switch button.active > span { color: var(--f-red-bright); }
+.formula-mode-switch button i { position: absolute; bottom: 0; left: 18px; right: 18px; height: 2px; background: var(--f-red-bright); }
+.formula-footer-right { display: flex; align-items: center; justify-content: flex-end; gap: 14px; min-width: 0; font: 9px var(--f-mono); white-space: nowrap; }
+.formula-footer-right > span:last-of-type { color: rgba(255,255,255,.7); }
+.formula-footer-right em { color: rgba(255,255,255,.28); font-style: normal; padding: 0 3px; }
+.formula-progress { width: 44px; height: 1px; display: block; background: rgba(255,255,255,.22); }
+.formula-progress i { display: block; height: 1px; background: var(--f-red-bright); transition: width .3s; }
+.formula-reset-button { background: transparent; color: rgba(255,255,255,.5); font: 8px var(--f-mono); letter-spacing: .08em; padding: 8px 0 8px 14px; margin-left: 2px; }
+.formula-reset-button:hover { color: #fff; }
+.formula-bottom-meta { position: absolute; z-index: 3; bottom: 105px; right: clamp(22px, 4.3vw, 76px); display: flex; gap: 18px; color: rgba(255,255,255,.31); font: 7px var(--f-mono); letter-spacing: .13em; }
+.formula-load-mark { position: absolute; z-index: 3; left: clamp(22px, 4.3vw, 76px); top: 113px; display: flex; gap: 8px; align-items: center; color: rgba(255,255,255,.35); font: 7px var(--f-mono); letter-spacing: .12em; }
+.formula-load-mark span { width: 4px; height: 4px; border-radius: 50%; background: var(--f-red); }
+
+.formula-load-card { display: flex; gap: 10px; align-items: center; padding: 14px 17px; color: rgba(255,255,255,.75); background: rgba(11,13,16,.84); border: 1px solid rgba(255,255,255,.16); font: 9px var(--f-mono); letter-spacing: .13em; backdrop-filter: blur(14px); white-space: nowrap; }
+.formula-loader { width: 12px; height: 12px; border: 1px solid rgba(255,255,255,.2); border-top-color: var(--f-red-bright); border-radius: 50%; animation: formula-spin .8s linear infinite; }
+.formula-error { position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; padding: 24px; background: #0b0d10; color: white; text-align: center; }
+.formula-error strong { color: var(--f-red-bright); font: 12px var(--f-mono); letter-spacing: .14em; }
+.formula-error span { max-width: 340px; color: var(--f-muted); font-size: 12px; line-height: 1.6; }
+.formula-touch-controls { display: none; }
+
+@keyframes formula-spin { to { transform: rotate(360deg); } }
+@keyframes formula-fade-up { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1040px) {
+  .formula-header { padding: 0 24px; }
+  .formula-car-info { left: 60px; width: 38vw; }
+  .formula-spec-grid > div { padding: 0 13px; }
+  .formula-footer { padding: 0 24px; gap: 12px; }
+  .formula-footer-note small { max-width: 250px; overflow: hidden; text-overflow: ellipsis; }
+  .formula-mode-switch button { min-width: 83px; padding: 0 12px; gap: 7px; }
+  .formula-mode-switch button i { left: 12px; right: 12px; }
+  .formula-footer-right { gap: 8px; }
+  .formula-reset-button { display: none; }
+  .formula-car-nav { right: 24px; }
+}
+
+@media (max-width: 720px) {
+  .formula-app { min-height: 540px; }
+  .formula-header { height: 68px; grid-template-columns: 1fr auto; padding: 0 16px; }
+  .formula-brand { gap: 8px; }
+  .formula-brand-mark { width: 29px; height: 29px; font-size: 15px; }
+  .formula-brand-copy strong { font-size: 10px; }
+  .formula-brand-copy small { font-size: 7px; }
+  .formula-title-block { display: none; }
+  .formula-header-actions { gap: 12px; }
+  .formula-status { font-size: 7px; }
+  .formula-icon-button { width: 31px; height: 31px; }
+  .formula-left-rail { display: none; }
+  .formula-load-mark { top: 84px; left: 16px; }
+  .formula-car-info { left: 18px; right: 18px; bottom: 170px; width: auto; max-width: 440px; }
+  .formula-index-line { font-size: 7px; margin-bottom: 10px; gap: 8px; }
+  .formula-car-info h2 { font-size: clamp(26px, 8.5vw, 38px); }
+  .formula-car-info p { font-size: 11px; margin: 7px 0 12px; }
+  .formula-spec-grid { padding-top: 10px; }
+  .formula-spec-grid > div { gap: 5px; padding: 0 10px; }
+  .formula-spec-grid span { font-size: 6px; letter-spacing: .06em; }
+  .formula-spec-grid strong { font-size: 8px; }
+  .formula-car-nav { top: 80px; right: 16px; gap: 9px; transform: scale(.84); transform-origin: top right; }
+  .formula-car-nav button { gap: 7px; }
+  .formula-car-nav button strong { max-width: 87px; font-size: 7px; }
+  .formula-car-nav button small { font-size: 6px; }
+  .formula-telemetry { left: auto; right: 16px; top: 128px; bottom: auto; justify-content: flex-end; gap: 8px; padding: 8px 10px; background: rgba(7,9,11,.54); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(8px); }
+  .formula-speed strong { font-size: 29px; }
+  .formula-rpm { width: 62px; }
+  .formula-rpm-top { font-size: 6px; }
+  .formula-telemetry-divider { height: 29px; }
+  .formula-gear strong { font-size: 16px; }
+  .formula-drive-hint { display: none; }
+  .formula-footer { min-height: 124px; grid-template-columns: 1fr auto; grid-template-rows: 45px 60px; align-content: center; gap: 0 10px; padding: 7px 16px 0; }
+  .formula-footer-note { grid-column: 1 / span 2; grid-row: 1; gap: 9px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .formula-footer-note strong { font-size: 9px; }
+  .formula-footer-note small { max-width: min(75vw, 360px); font-size: 6px; }
+  .formula-mode-number { font-size: 10px; }
+  .formula-mode-switch { grid-column: 1; grid-row: 2; height: 60px; gap: 0; }
+  .formula-mode-switch button { min-width: 0; padding: 0 9px; font-size: 10px; gap: 5px; }
+  .formula-mode-switch button > span { font-size: 6px; }
+  .formula-mode-switch button i { left: 9px; right: 9px; }
+  .formula-footer-right { grid-column: 2; grid-row: 2; gap: 7px; font-size: 7px; }
+  .formula-progress { width: 27px; }
+  .formula-bottom-meta { display: none; }
+  .formula-touch-controls { position: absolute; z-index: 5; left: 16px; right: 16px; bottom: 142px; display: flex; justify-content: space-between; align-items: end; pointer-events: none; }
+  .formula-steering-pad, .formula-pedal-pad { display: flex; gap: 7px; pointer-events: all; }
+  .formula-touch-controls button { min-width: 40px; height: 42px; border: 1px solid rgba(255,255,255,.24) !important; background: rgba(7,9,11,.58); backdrop-filter: blur(8px); color: white; font: 10px var(--f-mono); touch-action: none; }
+  .formula-touch-controls button:active { border-color: var(--f-red-bright) !important; background: rgba(223,73,56,.28); }
+  .formula-pedal-pad button { min-width: 65px; padding: 0 9px; font-size: 7px; }
+  .formula-mode-drive .formula-car-info { bottom: 214px; }
+  .formula-mode-drive .formula-telemetry { top: 128px; bottom: auto; }
+}
+
+@media (max-height: 660px) and (min-width: 721px) {
+  .formula-header { height: 72px; }
+  .formula-car-info { bottom: 104px; }
+  .formula-car-nav { top: 34%; }
+  .formula-telemetry { bottom: 104px; }
+  .formula-footer, .formula-mode-switch { min-height: 74px; height: 74px; }
+  .formula-footer-note small { max-width: 290px; }
+  .formula-bottom-meta { bottom: 86px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formula-app *, .formula-app *::before, .formula-app *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
