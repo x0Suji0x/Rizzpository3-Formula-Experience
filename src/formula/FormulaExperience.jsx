@@ -4,8 +4,8 @@ import { Html, OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import './FormulaExperience.css';
 
-// Original CC0 formula-car models from the 3DAssets.dev Formula Race Cars pack.
-// They are used as third-party assets; this interface and interaction code is original.
+// Locally bundled Formula 2 GLBs exported from the supplied Blender source.
+// See README.md for the model attribution and redistribution note.
 const CARS = [
   {
     id: 'formula-2-high-poly',
